@@ -1,0 +1,3 @@
+*.weights
+*.pt
+.DS_Store
