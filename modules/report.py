@@ -1,6 +1,7 @@
 import urllib3
 import json
 import base64
+import logging
 import datetime
 from cprint import cprint
 
@@ -31,7 +32,7 @@ class Reporter:
       cprint.info(f'not more then {self.interval} minutes')
       return
 
-    cprint.info("try to report from " + filepath)
+    logging.info("try to report from " + filepath)
     with open(filepath, 'rb') as fp:
       binary_data = fp.read()
       if not binary_data:
@@ -64,5 +65,5 @@ class Reporter:
         }
       )
       result = r.data
-      cprint.info("result: " + result.decode("utf-8"))
+      logging.info("result: " + result.decode("utf-8"))
       self.last_report_time = datetime.datetime.now().time()

@@ -1,7 +1,6 @@
-from cprint import cprint
-import time
-from pathlib import Path
 
+import logging
+import time
 import cv2
 import torch
 import torch.backends.cudnn as cudnn
@@ -13,6 +12,9 @@ from utils.general import check_img_size, check_requirements, check_imshow, non_
     scale_coords, xyxy2xywh, strip_optimizer, set_logging, increment_path
 from utils.plots import plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_synchronized
+
+from cprint import cprint
+from pathlib import Path
 
 def detect(source, device, keys, reporter, save_img=False):
     weights="yolov5s.pt"
@@ -115,6 +117,7 @@ def detect(source, device, keys, reporter, save_img=False):
                     if view_img:  # Add bbox to image
                         label = f'{names[int(cls)]} {conf:.2f}'
                         if names[int(cls)] and names[int(cls)] in keys:
+                          logging.info("get label in keys: " + names[int(cls)])
                           found = True
                         else:
                           found = False

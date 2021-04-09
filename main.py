@@ -1,6 +1,8 @@
 import sys
 import json
 import yaml
+import logging
+
 from cprint import cprint
 from modules.run import GoThread
 from modules.detect import detect
@@ -15,6 +17,17 @@ def main():
     else:
       cprint.fatal("load config file `config.yaml` failed")
 
+  # Set logger
+  logging.basicConfig(
+    format="%(asctime)s [%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s",
+    level=logging.INFO,
+    handlers=[
+        logging.FileHandler("./log/detect.log"),
+        logging.StreamHandler()
+    ]
+  )
+
+  # Run detect
   reporter = Reporter(config.get("report_url"), config.get("interval"), config.get("street"))
   detect(config.get("source"), config.get("device"), config.get("keys"), reporter)
 
