@@ -117,7 +117,6 @@ def detect(source, device, keys, reporter, save_img=False):
                     if view_img:  # Add bbox to image
                         label = f'{names[int(cls)]} {conf:.2f}'
                         if names[int(cls)] and names[int(cls)] in keys:
-                          logging.info("get label in keys: " + names[int(cls)])
                           found = True
                         else:
                           found = False
@@ -128,6 +127,7 @@ def detect(source, device, keys, reporter, save_img=False):
 
             # Stream results
             if view_img and found and reporter.can_report():
+              logging.info("get label in keys: " + names[int(cls)])
               file_path = str(save_dir / f'report_{t1}.jpg')
               cv2.imwrite(file_path, im0)
               reporter.report(file_path)
