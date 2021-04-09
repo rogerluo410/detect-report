@@ -1,7 +1,13 @@
-sources:
-  - rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov
-  - rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115s.mov
+source:
+  rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov
+keys:
+  - suitcase
+  - person
+street:
+  xx街道
+interval:
+  10
 device:
   cpu
 report_url:
-  https://abc.com/report
+  https://longgang.yoyoyard.com/api/v1/events

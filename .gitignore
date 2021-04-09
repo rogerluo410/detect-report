@@ -1,5 +1,6 @@
 *.weights
 *.pt
+*.log
 .DS_Store
 
 __pycache__/
