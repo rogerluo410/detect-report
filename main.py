@@ -1,6 +1,7 @@
 import sys
 import json
 import yaml
+import os
 import logging
 
 from cprint import cprint
@@ -15,7 +16,7 @@ def main():
     if config:
       cprint.ok("load config is " + json.dumps(config))
     else:
-      cprint.fatal("load config file `config.yaml` failed")
+      cprint.info("load config file `config.yaml` failed")
 
   # Set logger
   logging.basicConfig(
@@ -27,9 +28,19 @@ def main():
     ]
   )
 
+  # Get environment variables
+  source = os.environ.get('DETECT_SOURCE') or config.get("source")
+  keys = config.get("keys")
+  if os.environ.get('DETECT_KEYS') is not None:
+    keys = os.environ.get('DETECT_KEYS').split(",")
+  street = os.environ.get('DETECT_STREET') or config.get("street")
+  interval = os.environ.get('DETECT_INTERVAL') or config.get("interval")
+  device = os.environ.get('DETECT_DEVICE') or config.get("device")
+  report_url = os.environ.get('REPORT_URL') or config.get("report_url")
+
   # Run detect
-  reporter = Reporter(config.get("report_url"), config.get("interval"), config.get("street"))
-  detect(config.get("source"), config.get("device"), config.get("keys"), reporter)
+  reporter = Reporter(report_url, interval, street)
+  detect(source, device, keys, reporter)
 
   # threads = []
   # for source in config.get("sources"):
