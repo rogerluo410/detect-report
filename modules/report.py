@@ -22,7 +22,7 @@ class Reporter:
     current_time = datetime.datetime.now().time()
     interval_time = current_time
     if self.last_report_time is not None:
-      interval_time = self.add_minutes(self.last_report_time, self.interval)
+      interval_time = self.add_minutes(self.last_report_time, int(self.interval))
     if interval_time > current_time:
       return False
     return True

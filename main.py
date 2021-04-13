@@ -5,7 +5,6 @@ import os
 import logging
 
 from cprint import cprint
-from modules.run import GoThread
 from modules.detect import detect
 from modules.report import Reporter
 
@@ -41,16 +40,6 @@ def main():
   # Run detect
   reporter = Reporter(report_url, interval, street)
   detect(source, device, keys, reporter)
-
-  # threads = []
-  # for source in config.get("sources"):
-  #   t = GoThread("Thread for "+source, source, config.get("device"))
-  #   t.start()
-  #   threads.append(t)
-  
-  # # 等待所有线程完成
-  # for t in threads:
-  #   t.join()
 
 if __name__ == "__main__":
   main()

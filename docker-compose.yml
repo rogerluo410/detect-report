@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  detect-report-app:
+    build: .
+    image: rogerluo410/detect-report:v3
+    environment:
+      DETECT_SOURCE: rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov
+      DETECT_KEYS: suitcase,person,skateboard
+      DETECT_STREET: ss街道
+      DETECT_INTERVAL: 10
+      DETECT_DEVICE: cpu
+      REPORT_URL: https://longgang.yoyoyard.com/api/v1/events

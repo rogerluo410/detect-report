@@ -114,19 +114,18 @@ def detect(source, device, keys, reporter, save_img=False):
 
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
-                    if view_img:  # Add bbox to image
-                        label = f'{names[int(cls)]} {conf:.2f}'
-                        if names[int(cls)] and names[int(cls)] in keys:
-                          found = True
-                        else:
-                          found = False
-                        plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
+                    label = f'{names[int(cls)]} {conf:.2f}'
+                    if names[int(cls)] and names[int(cls)] in keys:
+                        found = True
+                    else:
+                        found = False
+                    plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
 
             # Print time (inference + NMS)
             cprint.info(f'{s}Done. ({t2 - t1:.3f}s)')
 
             # Stream results
-            if view_img and found and reporter.can_report():
+            if found and reporter.can_report():
               logging.info("get label in keys: " + names[int(cls)])
               file_path = str(save_dir / f'report_{t1}.jpg')
               cv2.imwrite(file_path, im0)
