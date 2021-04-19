@@ -3,6 +3,7 @@ services:
   detect-report-app:
     build: .
     image: rogerluo410/detect-report:v3
+    restart: always
     environment:
       DETECT_SOURCE: rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov
       DETECT_KEYS: suitcase,person,skateboard
