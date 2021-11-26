@@ -9,6 +9,6 @@ street:
 interval:
   10
 device:
-  cpu
+  gpu
 report_url:
   https://longgang.yoyoyard.com/api/v1/events
